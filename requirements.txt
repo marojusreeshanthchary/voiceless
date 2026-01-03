@@ -1,0 +1,15 @@
+# Python dependencies for VØICELESS
+# Install with: pip install -r requirements.txt
+
+# Core Vision & Processing
+mediapipe==0.10.9
+opencv-python==4.8.1.78
+numpy==1.24.3
+
+# Optional: For Flask web integration
+Flask==3.0.0
+flask-cors==4.0.0
+
+# Optional: For advanced features (future)
+# scikit-learn==1.3.0  # For ML classifiers
+# tensorflow==2.13.0   # For deep learning fallback

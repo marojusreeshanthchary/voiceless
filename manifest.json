@@ -1,0 +1,111 @@
+{
+  "project": "V\u00d8ICELESS - Voice-Independent Communication System",
+  "version": "1.0 MVP",
+  "created": "2026-01-03T10:14:01.603379",
+  "files": {
+    "backend": [
+      {
+        "name": "voiceless_mvp.py",
+        "size": "~3.5 KB",
+        "type": "Python",
+        "purpose": "Core backend with MediaPipe Face Mesh, calibration, and detection",
+        "executable": true
+      }
+    ],
+    "frontend": [
+      {
+        "name": "index.html",
+        "size": "~8 KB",
+        "type": "HTML5",
+        "purpose": "Interactive web interface with UI components",
+        "executable": false
+      },
+      {
+        "name": "style.css",
+        "size": "~15 KB",
+        "type": "CSS3",
+        "purpose": "Modern dark theme styling and responsive layout",
+        "executable": false
+      },
+      {
+        "name": "script.js",
+        "size": "~7 KB",
+        "type": "JavaScript (ES6+)",
+        "purpose": "UI controller, API integration, animations",
+        "executable": false
+      }
+    ],
+    "configuration": [
+      {
+        "name": "requirements.txt",
+        "size": "~0.3 KB",
+        "type": "Text",
+        "purpose": "Python package dependencies"
+      },
+      {
+        "name": ".gitignore",
+        "size": "~1 KB",
+        "type": "Text",
+        "purpose": "Git configuration to ignore cache/venv files"
+      }
+    ],
+    "documentation": [
+      {
+        "name": "README.md",
+        "size": "~10 KB",
+        "type": "Markdown",
+        "purpose": "Main project documentation with overview and usage"
+      },
+      {
+        "name": "SETUP_GUIDE.md",
+        "size": "~6 KB",
+        "type": "Markdown",
+        "purpose": "Installation, deployment, and troubleshooting guide"
+      },
+      {
+        "name": "PROJECT_FILES.md",
+        "size": "~8 KB",
+        "type": "Markdown",
+        "purpose": "Detailed description of all project files"
+      }
+    ]
+  },
+  "total_size": "~50 KB",
+  "languages": [
+    "Python",
+    "HTML5",
+    "CSS3",
+    "JavaScript (ES6+)",
+    "Markdown"
+  ],
+  "dependencies": {
+    "core": [
+      "mediapipe==0.10.9",
+      "opencv-python==4.8.1.78",
+      "numpy==1.24.3"
+    ],
+    "optional": [
+      "Flask==3.0.0",
+      "flask-cors==4.0.0"
+    ]
+  },
+  "requirements": {
+    "python": "3.10+",
+    "hardware": "Webcam, 4GB RAM, CPU-capable laptop/desktop",
+    "browser": "Chrome, Firefox, Safari, or Edge (HTML5 capable)"
+  },
+  "quick_start": [
+    "1. pip install -r requirements.txt",
+    "2. python voiceless_mvp.py (run calibration + detection)",
+    "3. open index.html in browser (see interactive UI)"
+  ],
+  "key_features": [
+    "MediaPipe Face Mesh integration (468 3D landmarks)",
+    "Real-time lip motion detection",
+    "Distance-based intent classification",
+    "User calibration (per-person personalization)",
+    "Privacy-first (no cloud APIs)",
+    "Responsive web UI with animations",
+    "Demo mode (works without backend)"
+  ]
+}
