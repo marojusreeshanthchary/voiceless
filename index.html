@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VØICELESS – Voice-Independent Communication System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">VØICELESS</div>
+      <p class="tagline">Voice-Independent Communication using Real-Time Lip Motion Analysis</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Left: Demo Simulation -->
+      <section class="demo-section">
+        <h2>Live Demo Simulation</h2>
+        <div class="demo-container">
+          <div class="video-placeholder">
+            <svg class="camera-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            <p>Camera Feed (Run voiceless_mvp.py locally)</p>
+          </div>
+
+          <!-- Lip Visualization -->
+          <div class="lips-visualization">
+            <svg viewBox="0 0 200 120" class="lips-svg">
+              <!-- Mouth shape -->
+              <ellipse id="mouth-shape" cx="100" cy="60" rx="45" ry="30" fill="none" stroke="#22c55e" stroke-width="3" />
+              <!-- Upper lip indicator -->
+              <circle id="upper-lip" cx="100" cy="40" r="4" fill="#06b6d4" />
+              <!-- Lower lip indicator -->
+              <circle id="lower-lip" cx="100" cy="80" r="4" fill="#06b6d4" />
+              <!-- Distance line -->
+              <line id="distance-line" x1="100" y1="40" x2="100" y2="80" stroke="#ef4444" stroke-width="2" opacity="0" />
+            </svg>
+            <p class="lips-label">Lip Movement Detection</p>
+          </div>
+        </div>
+
+        <!-- Calibration Section -->
+        <div class="calibration-section">
+          <h3>Calibration Status</h3>
+          <div class="calibration-words">
+            <button class="cal-word cal-word--success" data-word="HELP">
+              <span class="word-text">HELP</span>
+              <span class="word-status">✓</span>
+            </button>
+            <button class="cal-word cal-word--success" data-word="STOP">
+              <span class="word-text">STOP</span>
+              <span class="word-status">✓</span>
+            </button>
+            <button class="cal-word cal-word--success" data-word="YES">
+              <span class="word-text">YES</span>
+              <span class="word-status">✓</span>
+            </button>
+            <button class="cal-word cal-word--success" data-word="NO">
+              <span class="word-text">NO</span>
+              <span class="word-status">✓</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Output Panel -->
+      <section class="output-section">
+        <!-- Detection Output -->
+        <div class="output-card detection-card">
+          <h2>Detected Intent</h2>
+          <div class="word-display-large" id="current-word">WAITING</div>
+
+          <!-- Confidence Bar -->
+          <div class="confidence-section">
+            <label>Confidence Score</label>
+            <div class="confidence-bar">
+              <div id="confidence-fill" class="confidence-fill" style="width: 0%"></div>
+            </div>
+            <div class="confidence-text">
+              <span id="confidence-percent">0%</span>
+              <span id="confidence-value" class="confidence-raw">(0.00)</span>
+            </div>
+          </div>
+
+          <!-- Feature Display -->
+          <div class="features-grid">
+            <div class="feature-item">
+              <span class="feature-label">Mean Opening</span>
+              <span id="feature-mean" class="feature-value">0.0</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-label">Energy</span>
+              <span id="feature-energy" class="feature-value">0.0</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-label">Peak Motion</span>
+              <span id="feature-peak" class="feature-value">0.0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="status-card">
+          <h3>System Status</h3>
+          <div class="status-item">
+            <span class="status-dot status-dot--online"></span>
+            <span>Face Detection: <strong>Active</strong></span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot status-dot--online"></span>
+            <span>MediaPipe Mesh: <strong>Ready</strong></span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot status-dot--online"></span>
+            <span>Classification: <strong>Running</strong></span>
+          </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+          <h3>How It Works</h3>
+          <ol>
+            <li><strong>Calibration:</strong> User silently mouths 4 intents (HELP, STOP, YES, NO) for 2.5s each</li>
+            <li><strong>Feature Extraction:</strong> MediaPipe Face Mesh captures 468 landmarks, focusing on lip geometry</li>
+            <li><strong>Signature Matching:</strong> Real-time lip motion compared to calibrated signatures</li>
+            <li><strong>Intent Classification:</strong> Distance-based matching returns closest intent with confidence</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>VØICELESS MVP • Built with MediaPipe Face Mesh • Privacy-First On-Device Processing</p>
+      <p class="footer-tech">Python 3 | OpenCV | MediaPipe | HTML5 Canvas</p>
+    </footer>
+  </div>
+
+  <!-- Simulation Buttons (for demo) -->
+  <div class="demo-controls">
+    <h4>Demo Controls (Simulate Backend)</h4>
+    <div class="button-group">
+      <button class="demo-btn" onclick="simulateDetection('HELP', 0.92)">Simulate HELP</button>
+      <button class="demo-btn" onclick="simulateDetection('STOP', 0.88)">Simulate STOP</button>
+      <button class="demo-btn" onclick="simulateDetection('YES', 0.85)">Simulate YES</button>
+      <button class="demo-btn" onclick="simulateDetection('NO', 0.79)">Simulate NO</button>
+      <button class="demo-btn demo-btn--reset" onclick="resetDemo()">Reset</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
